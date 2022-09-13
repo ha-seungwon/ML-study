@@ -21,5 +21,6 @@
 [이영주](https://github.com/sweetsweetpotato) - 모바일시스템공학과 21학번
 
 ### 5.주차별 학습 목표 및 과정 
->
+
+[1주차](https://github.com/ha-seungwon/ML-study/blob/main/weekly_record/20220907.md)
 

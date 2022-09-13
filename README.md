@@ -19,7 +19,7 @@
 [이라은](https://github.com/raeunlee) - 모바일시스템공학과 18학번
 <details>
 <summary>개인공부 기록</summary>
-[1주차 개인 공부](https://github.com/raeunlee/ML-study/blob/main/Raeun_study/week1_study.md)
+- [1주차 개인 공부](https://github.com/raeunlee/ML-study/blob/main/Raeun_study/week1_study.md)
 </details>
 
 [이영주](https://github.com/sweetsweetpotato) - 모바일시스템공학과 21학번

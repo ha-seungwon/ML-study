@@ -1,5 +1,7 @@
 # 1주차 개인공부기록
 
+https://persistent-parka-cdf.notion.site/1-8fc56e3008c644eb8a912deb3a97e705
+
 # 사이킷런
 
 ## 사이킷런?

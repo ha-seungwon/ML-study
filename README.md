@@ -20,6 +20,7 @@
 <details>
 <summary></summary>
 </details>
+
 [이영주](https://github.com/sweetsweetpotato) - 모바일시스템공학과 21학번
 
 ### 5.주차별 학습 목표 및 과정 

@@ -1,10 +1,6 @@
-# 1주차 개인공부기록
-
-https://persistent-parka-cdf.notion.site/1-8fc56e3008c644eb8a912deb3a97e705
+# [ML] 사이킷런 설치 및 구현 (m1 macbook)
 
 # 사이킷런
-
-## 사이킷런?
 
 파이썬 머신러닝 라이브러리 중 가장 많이 사용되는 라이브러리
 
@@ -21,11 +17,9 @@ pip install scikit-learn==1.0.2
 pip install -U scikit-learn
 ```
 
-![스크린샷 2022-09-12 오후 2.34.22.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/618f23be-3f98-4df3-814c-333c3bad5a63/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-09-12_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_2.34.22.png)
+![스크린샷 2022-09-12 오후 2.34.22.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/618f23be-3f98-4df3-814c-333c3bad5a63/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-09-12_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_2.34.22.png)
 
 설치완료 후, jupyter notebook으로 버전확인
-
-![스크린샷 2022-09-12 오후 2.38.02.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7aa91d0f-e49a-4f42-b818-52e21760df8c/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-09-12_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_2.38.02.png)
 
 ## 머신러닝 만들어 보기 - 붓꽃 품종 예측(분류 Classification)
 
@@ -42,7 +36,11 @@ pip install -U scikit-learn
 
 ### 주피터 노트북 생성 및 모듈 임포트
 
-![스크린샷 2022-09-12 오후 2.43.37.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0b0e2f9e-1419-443b-9427-5082ae24bff4/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-09-12_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_2.43.37.png)
+```python
+from sklearn.datasets import load_iris
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+```
 
 - sklearn.datasets : 사이킷런에서 자체적으로 제공하는 데이터 세트 생성 모듈 모임
 - sklearn.tree: 트리 기반 ML 알고리즘을 구현한 클래스의 모임
@@ -55,7 +53,24 @@ ML알고리즘은 의사 결정 트리(Decision Tree) 알고리즘으로, 이를
 
 ### 데이터프레임으로 피처와 데이터 값을 확인
 
-![스크린샷 2022-09-12 오후 2.54.24.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2e7a7b82-e9ce-44ba-b214-da5e79948370/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-09-12_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_2.54.24.png)
+```python
+import pandas as pd
+
+iris = load_iris()
+
+iris_data = iris.data
+
+iris_label = iris.target
+print('iris target값:', iris_label)
+
+print('iris target명:', iris.target_names)
+
+iris_df = pd.DataFrame(data=iris_data, columns=iris.feature_names)
+iris_df['label']=iris.target
+iris_df.head(3)
+```
+
+![스크린샷 2022-09-14 오후 3.07.41.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c64cc678-f165-4e84-9079-186a30e52da8/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-09-14_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_3.07.41.png)
 
 Feature
 
@@ -72,7 +87,17 @@ Label
 
 ### 예측 정확도 구하기
 
-![스크린샷 2022-09-12 오후 4.20.59.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b419e591-eab9-45ab-a0e0-fe348e8ce9c6/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-09-12_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_4.20.59.png)
+```python
+X_train, X_test, y_train, y_test = train_test_split(iris_data, iris_label, test_size=0.2, random_state=11)
+#DecisionTreeClassifier 객체 생성
+dt_clf = DecisionTreeClassifier(random_state=11)
+#학습 수행
+dt_clf.fit(X_train, y_train)
+#학습이 완료된 DecisionTreeClassifier 객체에서 테스트 데이터 세트로 예측 수행
+pred = dt_clf.predict(X_test)
+from sklearn.metrics import accuracy_score
+print('예측 정확도: {0:.4f}'.format(accuracy_score(y_test, pred)))
+```
 
 1. 데이터 세트 분리: 데이터를 학습 데이터와 테스트 데이터로 분리
 - train_test_split()
@@ -139,11 +164,21 @@ target_names, feature_names → 넘파이 배열 또는 파이썬 리스트(list
 
 DESCR → 스트링 타입
 
-![스크린샷 2022-09-12 오후 4.43.03.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c7c83846-344c-441d-ad54-dc9b4ac329e5/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-09-12_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_4.43.03.png)
+```python
+iris_data = load_iris()
+print(type(iris_data))
+```
+
+`<class 'sklearn.utils.Bunch'>`
 
 Bunch class는 파이선 딕셔너리 자료형과 유사
 
-![스크린샷 2022-09-12 오후 4.44.24.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fffde9b2-9f91-471c-891f-3c73ac536470/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-09-12_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_4.44.24.png)
+```python
+keys = iris_data.keys()
+print('붓꽃 데이터 세트의 키들:', keys)
+```
+
+`붓꽃 데이터 세트의 키들: dict_keys(['data', 'target', 'frame', 'target_names', 'DESCR', 'feature_names', 'filename', 'data_module'])`
 
 데이터 키는 피처들의 데이터 값을 가리킴
 
